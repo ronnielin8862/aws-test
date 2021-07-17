@@ -1,0 +1,20 @@
+#cloud:
+#  aws.stack.auto: false
+#cloud:
+#  aws:
+#    stack:
+#      auto: false
+
+spring:
+  profiles.active: dev
+  application:
+    name: demo
+#spring:
+#  profiles.active: dev
+#  application:
+#    name: holiday-service
+
+#spring:
+#  profiles.active: dev
+#  application:
+#    name: holiday-service

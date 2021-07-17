@@ -1,0 +1,14 @@
+stages:
+  - base-image
+
+.base-images-changes-script:
+  stage: base-image
+  image: tiangolo/docker-with-compose:latest
+  before_script:
+    - echo before_script
+  script:
+    - echo after_script
+
+dev-ut-base-image-worker:
+  extends:
+    - .base-images-changes-script
