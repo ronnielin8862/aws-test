@@ -7,10 +7,11 @@ class SaveData{
     int count = 0;
     private Lock lock = new ReentrantLock();
 
-    void addition(){
+    void addition(String AA){
         lock.lock();
         try {
             System.out.println(Thread.currentThread().getName() + "execute addition , count = " + count++);
+            System.out.println(AA);
         }finally {
             lock.unlock();
         }
@@ -23,13 +24,13 @@ public class MultiThread {
 
         new Thread(()->{
             for (int i =0; i<= 10; i++){
-                saveData.addition();
+                saveData.addition("test1 + " + i);
             }
         },"AA").start();
 
         new Thread(()->{
             for (int i =0; i<= 10; i++){
-                saveData.addition();
+                saveData.addition("test2 + "+i);
             }
         },"BB").start();
     }

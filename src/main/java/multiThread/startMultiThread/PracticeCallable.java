@@ -1,9 +1,10 @@
 package multiThread.startMultiThread;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class PracticeCallable implements Callable {
 
@@ -25,13 +26,16 @@ public class PracticeCallable implements Callable {
         int times = 10;
         ExecutorService executor = Executors.newFixedThreadPool(times);
         List<Future<String>> results = new ArrayList<>();
-        Future<String> returnInt = null;
+        Future<String> returnInt;
+        Lock lock = new ReentrantLock();
 
         for (int i = 0; i < times; i++) {
             PracticeCallable callable = new PracticeCallable();
+            lock.lock();
             callable.setAA("館長有 "+ i +" 根懶覺");
             returnInt = executor.submit(callable);
             results.add(returnInt); // 將task放入list
+            lock.unlock();
         }
 
         executor.shutdown();
