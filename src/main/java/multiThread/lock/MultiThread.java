@@ -33,5 +33,16 @@ public class MultiThread {
                 saveData.addition("test2 + "+i);
             }
         },"BB").start();
+
+
+        Thread CC = new Thread(()->{
+            for (int i =0; i<= 13; i++){
+                System.out.println("哦哦哦哦  - " +i);
+            }
+        },"BB");
+
+
+        CC.setPriority(3);
+        CC.start();
     }
 }
