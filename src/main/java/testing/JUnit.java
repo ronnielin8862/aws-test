@@ -2,12 +2,17 @@ package testing;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class InitialTest {
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
+public class JUnit {
 
     @BeforeAll
     public static void before(){
@@ -43,6 +48,24 @@ public class InitialTest {
         var BB = TC.GetStringA(AA);
         assertEquals("錯了啦87", "NN", BB);
 //        assertEquals("錯了啦87", "CC", BB);
+    }
+
+    @Test // 這種方式不會執行init
+    public void TestInit1 (){
+        TestClass print = new TestClass();
+        print.print();
+    }
+
+    @Autowired
+    TestClass testclass;
+
+    @Test
+    public void TestInit2(){
+
+        TestClass constructor = new TestClass();
+        constructor.print();
+
+        testclass.print();
     }
 }
 
