@@ -1,4 +1,4 @@
-package multiThread.synchronizedMethod.synchronizedMethod;
+package multiThread.synchronize;
 
 class AdditionClass{
     private int count = 0;
@@ -25,8 +25,8 @@ public class SimpleMultiThread {
         new Thread(() -> {
             int i = 1;
             do {
-//                additionClass.add();
                 try {
+//                    additionClass.add();
                     subtraction.subtraction();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
